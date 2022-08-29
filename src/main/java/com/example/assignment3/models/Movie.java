@@ -1,6 +1,7 @@
 package com.example.assignment3.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Movie {
@@ -19,4 +20,9 @@ public class Movie {
     private String picture;
     @Column(length = 2083)
     private String link;
+    @ManyToOne
+    @JoinColumn(name = "franchise_id")
+    private Franchise franchise;
+    @ManyToMany
+    private Set<Character> characters;
 }

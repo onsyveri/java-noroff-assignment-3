@@ -1,6 +1,7 @@
 package com.example.assignment3.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Character {
@@ -15,4 +16,6 @@ public class Character {
     private String gender;
     @Column(length = 2083)
     private String picture;
+    @ManyToMany
+    private Set<Movie> movies;
 }
