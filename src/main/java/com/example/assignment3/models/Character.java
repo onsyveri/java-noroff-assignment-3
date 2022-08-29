@@ -16,6 +16,6 @@ public class Character {
     private String gender;
     @Column(length = 2083)
     private String picture;
-    @ManyToMany
+    @ManyToMany(mappedBy = "characters")
     private Set<Movie> movies;
 }

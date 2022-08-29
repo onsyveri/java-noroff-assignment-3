@@ -9,7 +9,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movie_id;
     @Column(length = 50, nullable = false)
-    private String movie_title;
+    private String title;
     @Column(length = 200)
     private String genre;
     @Column(nullable = false)
@@ -19,10 +19,15 @@ public class Movie {
     @Column(length = 2083)
     private String picture;
     @Column(length = 2083)
-    private String link;
+    private String trailer;
     @ManyToOne
     @JoinColumn(name = "franchise_id")
     private Franchise franchise;
     @ManyToMany
+    @JoinTable(
+            name = "movie_character",
+            joinColumns = {@JoinColumn(name = "movie_id")},
+            inverseJoinColumns = {@JoinColumn(name = "character_id")}
+    )
     private Set<Character> characters;
 }
