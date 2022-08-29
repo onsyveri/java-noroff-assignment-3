@@ -11,7 +11,7 @@ public class Assignment3Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Assignment3Application.class, args);
-        //Test stuff here
+        //Test stuff here :)
         //MovieServiceImpl.findAllByName("Ratatouille");
     }
 
