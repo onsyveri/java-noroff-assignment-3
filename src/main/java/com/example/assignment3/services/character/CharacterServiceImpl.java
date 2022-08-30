@@ -1,12 +1,14 @@
 package com.example.assignment3.services.character;
 
+import com.example.assignment3.models.Character;
 import com.example.assignment3.repositories.CharacterRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
-@Service
-public class CharacterServiceImpl implements CharacterService{
+public class CharacterServiceImpl implements CharacterService {
+
+
+
     private final CharacterRepository characterRepository;
 
     public CharacterServiceImpl(CharacterRepository characterRepository) {
@@ -16,14 +18,13 @@ public class CharacterServiceImpl implements CharacterService{
 
     @Override
     public Character findById(Integer id) {
-        //return characterRepository.findById(id).orElse(null);
-        return null;
+        return characterRepository.findById(id).get();
 
     }
 
     @Override
     public Collection<Character> findAll() {
-        return null;
+        return characterRepository.findAll();
     }
 
     @Override
