@@ -1,10 +1,14 @@
 package com.example.assignment3.models;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -35,4 +39,12 @@ public class Movie {
             inverseJoinColumns = {@JoinColumn(name = "character_id")}
     )
     private Set<Character> characters;
+
+    @JsonGetter("characters")
+    public List<Integer> jsonGetCharacters() {
+        if(characters != null)
+            return characters.stream().map(s -> s.getCharacter_id())
+                    .collect(Collectors.toList());
+        return null;
+    }
 }
