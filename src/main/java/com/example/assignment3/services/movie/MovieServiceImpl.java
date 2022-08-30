@@ -25,7 +25,7 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public Collection<Movie> findAll() {
-        return null;
+        return movieRepository.findAll();
     }
 
     @Override
