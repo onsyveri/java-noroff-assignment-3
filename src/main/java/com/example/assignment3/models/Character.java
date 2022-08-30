@@ -1,5 +1,6 @@
 package com.example.assignment3.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,5 +23,7 @@ public class Character {
     @Column(length = 2083)
     private String picture;
     @ManyToMany(mappedBy = "characters")
+    //remember to remove later
+    @JsonIgnore
     private Set<Movie> movies;
 }
