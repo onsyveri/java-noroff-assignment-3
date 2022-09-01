@@ -10,5 +10,4 @@ public class FranchiseDTO {
     private int franchise_id;
     private String description;
     private String franchise_name;
-    private Set<Movie> movies;
 }
