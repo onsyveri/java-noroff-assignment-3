@@ -32,22 +32,22 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public Movie add(Movie entity) {
-        return null;
+        return movieRepository.save(entity);
     }
 
     @Override
     public Movie update(Movie entity) {
-        return null;
+        return movieRepository.save(entity);
     }
 
     @Override
-    public void deleteById(Integer integer) {
-
+    public void deleteById(Integer id) {
+        movieRepository.deleteById(id);
     }
 
     @Override
     public void delete(Movie entity) {
-
+        movieRepository.delete(entity);
     }
 
     @Override

@@ -19,6 +19,8 @@ public abstract class MovieMapper {
 
     public abstract Collection<MovieDTO> movieToMovieDto(Collection<Movie> movies);
 
+    public abstract MovieDTO movieTitleDto (String title);
+
     // Custom mappings
     @Named("movieIdToMovie")
     Movie mapIdToMovie(int id) {

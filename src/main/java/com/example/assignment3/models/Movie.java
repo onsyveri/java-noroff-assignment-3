@@ -40,11 +40,11 @@ public class Movie {
     )
     private Set<Character> characters;
 
-    @JsonGetter("characters")
+    /*@JsonGetter("characters")
     public List<Integer> jsonGetCharacters() {
         if(characters != null)
             return characters.stream().map(s -> s.getCharacter_id())
                     .collect(Collectors.toList());
         return null;
-    }
+    }*/
 }

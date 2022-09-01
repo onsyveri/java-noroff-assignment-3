@@ -7,11 +7,9 @@ import com.example.assignment3.repositories.MovieRepository;
 import com.example.assignment3.services.movie.MovieService;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -45,5 +43,24 @@ public class MovieController {
         return ResponseEntity.ok(movies);
     }
 
+    @DeleteMapping("{id}") // DELETE: localhost:8080/api/v1/students/1
+    public ResponseEntity delete(@PathVariable int id) {
+        movieService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping
+    public ResponseEntity add(@RequestBody Movie movie) {
+        movieService.add(movie);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    /*@GetMapping("{title}") // GET: localhost:8080/api/v1/movies/title
+    public ResponseEntity getByTitle(@PathVariable String title) {
+        MovieDTO movies = (MovieDTO) movieMapper.movieToMovieDto(
+                movieService.findAllByTitle(title)
+        );
+        return ResponseEntity.ok(movies);
+    }*/
 
 }

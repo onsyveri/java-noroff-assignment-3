@@ -1,7 +1,10 @@
 package com.example.assignment3.models.dtos.movie;
 
+import com.example.assignment3.models.Character;
 import com.example.assignment3.models.Franchise;
 import lombok.Data;
+
+import java.util.Set;
 
 @Data
 public class MovieDTO {
