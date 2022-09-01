@@ -22,22 +22,39 @@ public class CharacterController {
         this.characterMapper = characterMapper;
     }
 
+
     //get all characters
     @GetMapping
     public ResponseEntity getAll() {
-        Collection<CharacterDTO> characters = characterMapper.characterTocharacterDTO(
+        Collection<CharacterDTO> characters = characterMapper.characterToCharacterDTO(
                 characterService.findAll()
         );
         return ResponseEntity.ok(characters);
     }
 
+
     //get specific character
     @GetMapping("{id}")
     public ResponseEntity findById(@PathVariable int id){
-        CharacterDTO characterDTO = characterMapper.characterTocharacterDTO
+        Character chars = characterMapper.characterTocharacter
                 (characterService.findById(id));
-        return ResponseEntity.ok(characterDTO);
+        return ResponseEntity.ok(chars);
     }
+
+
+
+    @PutMapping("{id}") // PUT: localhost:8080/api/v1/students/1
+    public ResponseEntity update(@RequestBody CharacterDTO characterDTO, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != characterDTO.getCharacter_id())
+            return ResponseEntity.badRequest().build();
+        characterService.update(
+                characterMapper.characterTocharacterDTO(characterDTO)
+        );
+        return ResponseEntity.noContent().build();
+    }
+
+
 
 
     //delete character

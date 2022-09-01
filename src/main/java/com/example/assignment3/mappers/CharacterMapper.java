@@ -7,12 +7,12 @@ import org.mapstruct.Mapper;
 import java.util.Collection;
 
 @Mapper(componentModel = "spring")
-public interface CharacterMapper {
-    CharacterDTO characterTocharacterDTO(Character character);
+public abstract class CharacterMapper {
+    public abstract Character characterTocharacter(Character character);
 
-    public abstract Collection<CharacterDTO> characterTocharacterDTO (Collection<Character> characters);
+    public abstract Character characterTocharacterDTO(CharacterDTO character);
 
-
+    public abstract Collection<CharacterDTO> characterToCharacterDTO (Collection<Character> characters);
 
 
 }

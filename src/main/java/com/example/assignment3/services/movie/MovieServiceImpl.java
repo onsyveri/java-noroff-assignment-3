@@ -1,5 +1,6 @@
 package com.example.assignment3.services.movie;
 
+import com.example.assignment3.models.Character;
 import com.example.assignment3.models.Movie;
 import com.example.assignment3.repositories.MovieRepository;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ public class MovieServiceImpl implements MovieService{
 
 
     @Override
-    public Movie findById(Integer integer) {
+    public Character findById(Integer integer) {
         return null;
     }
 

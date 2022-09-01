@@ -1,5 +1,6 @@
 package com.example.assignment3.models;
 
+import com.example.assignment3.models.dtos.CharacterDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class Character {
+public class Character{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int character_id;
