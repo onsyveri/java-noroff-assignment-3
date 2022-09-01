@@ -1,12 +1,14 @@
 package com.example.assignment3.services.character;
 
 import com.example.assignment3.models.Character;
+import com.example.assignment3.models.Movie;
 import com.example.assignment3.repositories.CharacterRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+@Service
 public class CharacterServiceImpl implements CharacterService {
-
 
 
     private final CharacterRepository characterRepository;
@@ -38,7 +40,8 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public void deleteById(Integer id) {
+        characterRepository.deleteById(id);
 
     }
 
@@ -46,4 +49,5 @@ public class CharacterServiceImpl implements CharacterService {
     public void delete(Character entity) {
 
     }
+
 }
