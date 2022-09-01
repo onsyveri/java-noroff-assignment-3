@@ -28,21 +28,26 @@ public class FranchiseServiceImpl implements FranchiseService{
 
     @Override
     public Franchise add(Franchise entity) {
-        return null;
+        return franchiseRepository.save(entity);
     }
 
     @Override
     public Franchise update(Franchise entity) {
-        return null;
+        return franchiseRepository.save(entity);
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public void updateById(int movieId, int franchiseId) {
+        franchiseRepository.updateFranchiseById(movieId, franchiseId);
+    }
 
+    @Override
+    public void deleteById(Integer id) {
+        franchiseRepository.deleteById(id);
     }
 
     @Override
     public void delete(Franchise entity) {
-
+        franchiseRepository.delete(entity);
     }
 }
