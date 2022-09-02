@@ -1,6 +1,6 @@
 package com.example.assignment3.services.movie;
 
-import com.example.assignment3.models.Character;
+import com.example.assignment3.exceptions.MovieNotFoundException;
 import com.example.assignment3.models.Movie;
 import com.example.assignment3.repositories.MovieRepository;
 import org.slf4j.Logger;
@@ -20,8 +20,9 @@ public class MovieServiceImpl implements MovieService{
 
 
     @Override
-    public Character findById(Integer integer) {
-        return null;
+    public Movie findById(Integer id) {
+        return movieRepository.findById(id)
+                .orElseThrow(() -> new MovieNotFoundException(id));
     }
 
     @Override
@@ -31,22 +32,22 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public Movie add(Movie entity) {
-        return null;
+        return movieRepository.save(entity);
     }
 
     @Override
     public Movie update(Movie entity) {
-        return null;
+        return movieRepository.save(entity);
     }
 
     @Override
-    public void deleteById(Integer integer) {
-
+    public void deleteById(Integer id) {
+        movieRepository.deleteById(id);
     }
 
     @Override
     public void delete(Movie entity) {
-
+        movieRepository.delete(entity);
     }
 
     @Override
