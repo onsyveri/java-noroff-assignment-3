@@ -1,4 +1,4 @@
-package no.accelerate.restserverdemo.util;
+package com.example.assignment3.util;
 
 public class ApiErrorResponse {
     private String timestamp;
