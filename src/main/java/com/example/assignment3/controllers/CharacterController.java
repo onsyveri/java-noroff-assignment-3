@@ -8,9 +8,11 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.Collection;
 
 @RestController
@@ -29,6 +31,7 @@ public class CharacterController {
 
 
     //get all characters
+    @Operation(summary = "Get all characters")
     @GetMapping
     public ResponseEntity getAll() {
         Collection<CharacterDTO> characters = characterMapper.characterToCharacterDTO(
@@ -49,8 +52,7 @@ public class CharacterController {
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = no.accelerate.restserverdemo.util.ApiErrorResponse.class)) })
     })
-
-            //get specific character
+    //get specific character
     @GetMapping("{id}")
     public ResponseEntity findById(@PathVariable int id){
         Character chars = characterMapper.characterTocharacter
@@ -58,9 +60,17 @@ public class CharacterController {
         return ResponseEntity.ok(chars);
     }
 
+    @Operation(summary = "Adds new characters")
+    @PostMapping
+    public ResponseEntity add(@RequestBody Character character) {
+        Character chars = characterService.add(character);
+        URI location = URI.create("characters/" + chars.getCharacter_id());
+        return ResponseEntity.created(location).build();
+    }
 
 
-    @PutMapping("{id}") // PUT: localhost:8080/api/v1/students/1
+    @Operation(summary = "Update a character")
+    @PutMapping("{id}")
     public ResponseEntity update(@RequestBody CharacterDTO characterDTO, @PathVariable int id) {
         // Validates if body is correct
         if(id != characterDTO.getCharacter_id())
@@ -75,6 +85,7 @@ public class CharacterController {
 
 
     //delete character
+    @Operation(summary = "Delete a character")
     @DeleteMapping("{id}")
     public ResponseEntity delete(@PathVariable int id) {
         characterService.deleteById(id);
