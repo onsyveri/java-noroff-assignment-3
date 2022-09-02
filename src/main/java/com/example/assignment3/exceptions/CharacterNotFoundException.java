@@ -1,4 +1,4 @@
-package com.example.assignment3.exeptions;
+package com.example.assignment3.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

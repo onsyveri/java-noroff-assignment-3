@@ -12,7 +12,7 @@ import java.net.URI;
 import java.util.Collection;
 
 @RestController
-@RequestMapping(path = "api/v1/movies")
+@RequestMapping(path = "api/1/movies")
 public class MovieController {
 
     private final MovieService movieService;
@@ -52,6 +52,9 @@ public class MovieController {
         return ResponseEntity.created(location).build();
         // return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+
+
 
     /*@GetMapping("search") // GET: localhost:8080/api/v1/movies/search?title=Avatar
     public ResponseEntity<Collection<Movie>> findByTitle(@RequestParam String title) {
