@@ -6,7 +6,7 @@ import java.util.Collection;
 
 public interface CrudService <T, ID> {
     // Generic CRUD
-    Character findById(ID id);
+    T findById(ID id);
     Collection<T> findAll();
     T add(T entity);
     T update(T entity);

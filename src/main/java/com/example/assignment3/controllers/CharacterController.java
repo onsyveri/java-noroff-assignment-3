@@ -41,7 +41,7 @@ public class CharacterController {
     }
 
 
-    @Operation(summary = "Get a student by ID")
+    @Operation(summary = "Get a character by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Success",
@@ -50,7 +50,7 @@ public class CharacterController {
             @ApiResponse(responseCode = "404",
                     description = "Student does not exist with supplied ID",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = no.accelerate.restserverdemo.util.ApiErrorResponse.class)) })
+                            schema = @Schema(implementation = com.example.assignment3.util.ApiErrorResponse.class)) })
     })
     //get specific character
     @GetMapping("{id}")
@@ -80,9 +80,6 @@ public class CharacterController {
         );
         return ResponseEntity.noContent().build();
     }
-
-
-
 
     //delete character
     @Operation(summary = "Delete a character")
