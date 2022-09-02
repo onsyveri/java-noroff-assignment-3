@@ -2,8 +2,14 @@ package com.example.assignment3.controllers;
 
 import com.example.assignment3.mappers.MovieMapper;
 import com.example.assignment3.models.Movie;
+import com.example.assignment3.models.dtos.character.CharacterDTO;
 import com.example.assignment3.models.dtos.movie.MovieDTO;
 import com.example.assignment3.services.movie.MovieService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +18,7 @@ import java.net.URI;
 import java.util.Collection;
 
 @RestController
-@RequestMapping(path = "api/v1/movies")
+@RequestMapping(path = "api/1/movies")
 public class MovieController {
 
     private final MovieService movieService;
@@ -23,7 +29,9 @@ public class MovieController {
         this.movieMapper = movieMapper;
     }
 
-    @GetMapping // GET: localhost:8080/api/v1/movies
+    //get all movies
+    @Operation(summary = "Get all movies")
+    @GetMapping // GET: localhost:8080/api/1/movies
     public ResponseEntity getAll() {
         Collection<MovieDTO> movies = movieMapper.movieToMovieDto(
                 movieService.findAll()
@@ -31,7 +39,19 @@ public class MovieController {
         return ResponseEntity.ok(movies);
     }
 
-    @GetMapping("{id}") // GET: localhost:8080/api/v1/movies/1
+    //get a specific movie
+    @Operation(summary = "Get a movie by ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Success",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = MovieDTO.class)) }),
+            @ApiResponse(responseCode = "404",
+                    description = "Movie does not exist with supplied ID",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = com.example.assignment3.util.ApiErrorResponse.class)) })
+    })
+    @GetMapping("{id}") // GET: localhost:8080/api/1/movies/1
     public ResponseEntity getById(@PathVariable int id) {
         MovieDTO movies = movieMapper.movieToMovieDto(
                 movieService.findById(id)
@@ -39,24 +59,34 @@ public class MovieController {
         return ResponseEntity.ok(movies);
     }
 
-    @DeleteMapping("{id}") // DELETE: localhost:8080/api/v1/students/1
+    //delete a movie by id
+    @Operation(summary = "Delete a movie by ID")
+    @DeleteMapping("{id}") // DELETE: localhost:8080/api/1/movies/1
     public ResponseEntity delete(@PathVariable int id) {
         movieService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping // POST: localhost:8080/api/v1/movies
-    public ResponseEntity add(@RequestBody Movie movie) {
-        Movie mov = movieService.add(movie);
-        URI location = URI.create("movies/" + movie.getMovie_id());
-        return ResponseEntity.created(location).build();
-        // return ResponseEntity.status(HttpStatus.CREATED).build();
+    //update a movie
+    @Operation(summary = "Update a movie")
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody MovieDTO movieDTO, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != movieDTO.getMovie_id())
+            return ResponseEntity.badRequest().build();
+        movieService.update(
+                movieMapper.movieToMovieDto(movieDTO)
+        );
+        return ResponseEntity.noContent().build();
     }
 
-    /*@GetMapping("search") // GET: localhost:8080/api/v1/movies/search?title=Avatar
-    public ResponseEntity<Collection<Movie>> findByTitle(@RequestParam String title) {
-        return ResponseEntity.ok(movieService.findAllByTitle(title));
-    }*/
-
+    //add a movie
+    @Operation(summary = "Add a movie")
+    @PostMapping // POST: localhost:8080/api/1/movies
+    public ResponseEntity add(@RequestBody Movie movie) {
+        Movie mov = movieService.add(movie);
+        URI location = URI.create("movies/" + mov.getMovie_id());
+        return ResponseEntity.created(location).build();
+    }
 
 }

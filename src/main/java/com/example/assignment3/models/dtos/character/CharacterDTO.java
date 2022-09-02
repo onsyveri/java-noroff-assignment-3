@@ -1,4 +1,4 @@
-package com.example.assignment3.models.dtos;
+package com.example.assignment3.models.dtos.character;
 
 import com.example.assignment3.models.Movie;
 import lombok.Getter;

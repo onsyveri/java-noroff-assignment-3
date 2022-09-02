@@ -1,7 +1,7 @@
 package com.example.assignment3.mappers;
 
 import com.example.assignment3.models.Character;
-import com.example.assignment3.models.dtos.CharacterDTO;
+import com.example.assignment3.models.dtos.character.CharacterDTO;
 import org.mapstruct.Mapper;
 
 import java.util.Collection;

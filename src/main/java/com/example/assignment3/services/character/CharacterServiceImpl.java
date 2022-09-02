@@ -1,6 +1,6 @@
 package com.example.assignment3.services.character;
 
-import com.example.assignment3.exeptions.CharacterNotFoundException;
+import com.example.assignment3.exceptions.CharacterNotFoundException;
 import com.example.assignment3.models.Character;
 import com.example.assignment3.repositories.CharacterRepository;
 import org.springframework.stereotype.Service;
