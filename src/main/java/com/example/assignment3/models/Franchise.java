@@ -1,9 +1,14 @@
 package com.example.assignment3.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 public class Franchise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
