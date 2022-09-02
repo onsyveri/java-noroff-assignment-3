@@ -15,5 +15,5 @@ public class MovieDTO {
     private String director;
     private String picture;
     private String trailer;
-    private Franchise franchise;
+    //private Franchise franchise;
 }

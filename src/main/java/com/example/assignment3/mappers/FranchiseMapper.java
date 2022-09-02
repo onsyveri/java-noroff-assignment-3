@@ -23,9 +23,4 @@ public abstract class FranchiseMapper {
 
     public abstract FranchiseDTO franchiseNameDto (String name);
 
-    @Named("franchiseIdToFranchise")
-    Franchise mapIdToFranchise(int id) {
-        return franchiseService.findById(id);
-    }
-
 }
